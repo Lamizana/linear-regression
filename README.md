@@ -1,8 +1,13 @@
 # Ft_linear_regression
 
 > Created by alex lamizana in 31/05/2025
+
 Introduction Introduction machine learning.
 Dans ce projet, on va mettre en œuvre notre premier algorithme d'apprentissage automatique.
+
+```bash
+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
+```
 ----------------------------------------------------------------------------
 
 ## Avant-propos
