@@ -1,7 +1,13 @@
+
+# ================================ IMPORT =====================================
 import csv
 import json
 import random
+# ============================== CONFIGURATION ================================
 
+
+
+# ================================ FONCTIONS ==================================
 def load_data(filename='data.csv'):
     data = []
     with open(filename, 'r') as file:
@@ -16,15 +22,20 @@ def load_data(filename='data.csv'):
                 pass
     return data
 
+# -------------------------------------------------------------------------------
 def normalize(x):
     x_min = min(x)
     x_max = max(x)
     x_norm = [(xi - x_min) / (x_max - x_min) for xi in x]
     return x_norm, x_min, x_max
 
+
+# -------------------------------------------------------------------------------
 def denormalize(x_norm, x_min, x_max):
     return [xi * (x_max - x_min) + x_min for xi in x_norm]
 
+
+# -------------------------------------------------------------------------------
 def split_data(data, train_ratio=0.8):
     random.shuffle(data)
     train_size = int(len(data) * train_ratio)
@@ -32,6 +43,8 @@ def split_data(data, train_ratio=0.8):
     test = data[train_size:]
     return train, test
 
+
+# -------------------------------------------------------------------------------
 def train_model(x, y, learning_rate=0.001, iterations=10000):
     theta0 = 0
     theta1 = 0
@@ -46,23 +59,30 @@ def train_model(x, y, learning_rate=0.001, iterations=10000):
 
     return theta0, theta1
 
+# -------------------------------------------------------------------------------
 def predict(theta0, theta1, x):
     return [theta0 + theta1 * xi for xi in x]
 
+
+# -------------------------------------------------------------------------------
 def mean_squared_error(y_true, y_pred):
     n = len(y_true)
     return sum((y_true[i] - y_pred[i])**2 for i in range(n)) / n
 
+
+# -------------------------------------------------------------------------------
 def mean_absolute_error(y_true, y_pred):
     n = len(y_true)
     return sum(abs(y_true[i] - y_pred[i]) for i in range(n)) / n
 
+# -------------------------------------------------------------------------------
 def r2_score(y_true, y_pred):
     mean_y = sum(y_true) / len(y_true)
     ss_res = sum((y_true[i] - y_pred[i])**2 for i in range(len(y_true)))
     ss_tot = sum((y_true[i] - mean_y)**2 for i in range(len(y_true)))
     return 1 - (ss_res / ss_tot)
 
+# -------------------------------------------------------------------------------
 if __name__ == "__main__":
     data = load_data()
     train_data, test_data = split_data(data, train_ratio=0.8)
