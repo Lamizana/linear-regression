@@ -5,7 +5,10 @@ import pandas as pd                                 # type: ignore #ignore
 import matplotlib.pyplot as plt                     # type: ignore #ignore
 from logger import setup_logger, GREEN_B
 
+# =============================== CONSTANTES ===================================
 logger = setup_logger()
+THETA_0 = 0
+THETA_1 = 0
 
 # =============================== FONCTIONS ====================================
 def recup_data(file: str=""):
@@ -81,14 +84,31 @@ def save_graph(data: pd.DataFrame) -> None:
 
     except Exception as e:
         logger.error(f"Lors de la création du graphique : {e}")
+        return sys.exit(1)
     return
 
 
 
 #------------------------------------------------------------------------------
-def mean_squarred_error(data):
+def mean_squarred_error(data: pd.DataFrame, theta0=0.0, theta1=0.0)-> float:
 
-    cout = 0.0
+    try:
+        # Valeurs réelles :
+        y = data["price"]
+        x = data["km"].values
+
+        # Valeurs prédites :
+        y_pred = theta0 + theta1 * x
+
+        # MSE :
+        mse = ((y_pred - y) ** 2).mean()
+        
+        logger.info(f"MSE : {mse:.2f}")
+        return mse
+    
+    except Exception as e:
+        logger.error(f"Lors du calcul du MSE : {e}")
+        return sys.exit(1)
 
 
 #------------------------------------------------------------------------------
@@ -103,8 +123,8 @@ def main() -> int:
     # [2]. Chargement et affichage des données + nuage de points :
     save_graph(data)
 
-    # [3]. Calcul de la fonction de cout (Gestion erreur) :
-    mean_squarred_error(data)
+    # [3]. Calcul de la fonction de cout (MSE) :
+    mean_squarred_error(data, THETA_0, THETA_1)
     return 0
 
 # =============================== PROGRAMME ===================================
