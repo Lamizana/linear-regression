@@ -101,7 +101,8 @@ def mean_squarred_error(data: pd.DataFrame, theta0=0.0, theta1=0.0)-> float:
         y_pred = theta0 + theta1 * x
 
         # MSE :
-        mse = ((y_pred - y) ** 2).mean()
+        error = y_pred - y
+        mse = (error ** 2).mean()
         
         logger.info(f"MSE : {mse:.2f}")
         return mse
@@ -125,6 +126,8 @@ def main() -> int:
 
     # [3]. Calcul de la fonction de cout (MSE) :
     mean_squarred_error(data, THETA_0, THETA_1)
+
+    
     return 0
 
 # =============================== PROGRAMME ===================================
