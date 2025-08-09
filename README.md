@@ -1,7 +1,7 @@
 # Ft_linear_regression
 
 > Created by alex lamizana in 31/05/2025
-> Mise a jour : 25/06/2025
+> Mise a jour : 26/06/2025
 
 Introduction Introduction machine learning.
 Dans ce projet, on va mettre en œuvre notre premier algorithme d'apprentissage automatique.
@@ -34,8 +34,7 @@ L'objectif de ce projet est de nous initier au concept de base de l'apprentissag
 
 Pour ce projet, vous devrez créer un programme qui prédit le prix d'une voiture par
 en utilisant un train de fonctions linéaires ***(linear function)*** avec un algorithme de descente de gradient ***(gradient descent algorithm)***.
-Nous travaillerons sur un exemple précis pour ce projet, mais une fois que vous aurez terminé, vous serez
-en mesure d'utiliser l'algorithme avec n'importe quel autre ensemble de données.
+Nous travaillerons sur un exemple précis pour ce projet, mais une fois que vous aurez terminé, vous serez en mesure d'utiliser l'algorithme avec n'importe quel autre ensemble de données.
 
 ## Instruction générales
 
@@ -70,3 +69,14 @@ Vous utiliserez les formules suivantes :
 
 > [!IMPORTANT]
 > 
+
+## Niveau minimal des logs affichés (INFO, DEBUG, WARNING, ERROR, CRITICAL)
+
+```python
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(levelname)s] %(message)s'
+)
+```
