@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 
 # ============================== CONSTANTES ===================================
 # Couleurs :
-RED = "\033[31m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
+RED = "\033[31m"
 RESET = "\033[0m"
 
 # Gestion des kilometres :
@@ -213,7 +213,8 @@ def main():
             
         # [4] Prédiction pour X kilometres :
         predict = linear_regression(km, beta_0, beta_1)
-        logging.info(f"{GREEN}Le prix estimé pour une voiture qui a {km:_} km au compteur : {predict:.2f} €{RESET}")
+        print(GREEN)
+        logging.info(f"Le prix estimé pour une voiture qui a {km:_} km au compteur : {predict:.2f} €{RESET}")
         
     except Exception as e:
         logging.error(f"--- RAGE QUIT !! ---")
