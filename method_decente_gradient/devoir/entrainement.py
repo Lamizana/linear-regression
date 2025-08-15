@@ -3,12 +3,17 @@ import sys
 import json
 import pandas as pd                                 # type: ignore #ignore
 import matplotlib.pyplot as plt                     # type: ignore #ignore
+import numpy as np
+
 from logger import setup_logger, GREEN_B
 
 # =============================== CONSTANTES ===================================
-logger = setup_logger()
+LOGGER = setup_logger()
 THETA_0 = 0
 THETA_1 = 0
+MSE_HISTORY = []
+ITERATIONS = 10000
+LEARNING_RATE = 0.01
 
 # =============================== FONCTIONS ====================================
 def recup_data(file: str=""):
@@ -18,98 +23,77 @@ def recup_data(file: str=""):
         for col in data.columns:
             data[col] = pd.to_numeric(data[col], errors='raise')
 
-        logger.info(f"Données du fichier '{file}' recupérer avec succès : \n{data.head()}")
+        LOGGER.info(f"Données du fichier '{file}' récupérer avec succès :\n{data.head()}")
     except Exception as e:
-        logger.error(f"Lors de la récuperation des données : {e}")
+        LOGGER.error(f"Lors de la récuperation des données : {e}")
         return sys.exit(1)
 
     return data
 
 
-#------------------------------------------------------------------------------
-def save_graph(data: pd.DataFrame) -> None:
-    """
-    Génère et enregistre un graphique en nuage de points (scatter plot)
-    illustrant la relation entre les heures d'étude et les notes obtenues.
+# -------------------------------------------------------------------------------
+def normalize(x):
+    x_min = min(x)
+    x_max = max(x)
+    x_norm = [(xi - x_min) / (x_max - x_min) for xi in x]
 
-    Le graphique est sauvegardé sous le nom "relation_notes_heures.png".
-
-    Parameters
-    ----------
-    data : pandas.DataFrame
-        Un DataFrame contenant deux colonnes :
-        - "km" : les valeurs sur l'axe des X (km parcourues)
-        - "price"  : les valeurs sur l'axe des Y (prix obtenues)
-
-    Returns
-    -------
-    None
-
-    Raises
-    ------
-    KeyError
-        Si les colonnes "km" ou "price" sont absentes du DataFrame.
-
-    Examples
-    --------
-    >>> import pandas as pd
-    >>> df = pd.DataFrame({"km": [1, 2, 3], "price": [6, 6.5, 7.5]})
-    >>> save_graph(df)
-    # Enregistre le fichier 'relation_km_price.png'
-    """
-
-
-    try:
-        # [1]. Trace un graphique simple (nuage de points) :
-        plt.plot(
-            data["km"].values,
-            data["price"].values,
-            marker='o',
-            linestyle = ' ',
-            color='blue'
-        )
-        
-        # [2]. Titrage et labels :
-        plt.title("Évolution des prix en fonction des kilometres parcourues")
-        plt.xlabel("Kilomètres parcourus")
-        plt.ylabel("Prix du véhicule (€)")
-        plt.grid(True)
-        plt.xlim(0, data["km"].max() + 20_000)
-        plt.ylim(0, data["price"].max() + 2_000)
-
-        # [3].Sauvegarde le graphique :
-        file = "relation_km_price.png"
-        plt.savefig(file)
-        logger.info(f"Fichier '{file}' enregistrer avec succès !")
-
-    except Exception as e:
-        logger.error(f"Lors de la création du graphique : {e}")
-        return sys.exit(1)
-    return
-
+    return np.array(x_norm, dtype=float), x_min, x_max
 
 
 #------------------------------------------------------------------------------
-def mean_squarred_error(data: pd.DataFrame, theta0=0.0, theta1=0.0)-> float:
+def descente_gradiant(data: pd.DataFrame, theta0=0.0, theta1=0.0):
 
     try:
-        # Valeurs réelles :
-        y = data["price"]
-        x = data["km"].values
+        # Données d'origine :
+        x = np.array(data["km"].values, dtype=float)
+        y = np.array(data["price"].values, dtype=float)
+        n = len(x)
 
-        # Valeurs prédites :
-        y_pred = theta0 + theta1 * x
 
-        # MSE :
-        error = y_pred - y
-        mse = (error ** 2).mean()
-        
-        logger.info(f"MSE : {mse:.2f}")
-        return mse
-    
+        # Normalisation pour stabilité
+        x_norm, x_min, x_max = normalize(x)
+        y_norm, y_min, y_max = normalize(y)
+        n = len(x)
+        MSE_HISTORY = []
+
+        # Descente de gradient sur données normalisées :
+        for _ in range(ITERATIONS):
+            # Prédiction :
+            y_pred = theta0 + theta1 * x_norm
+            error = y_pred - y_norm
+
+            # Gradients :
+            gradient_b0 = (1/n) * error.sum()
+            gradient_b1 = (1/n) * (error * x_norm).sum()
+
+            # Mise à jour des paramètres :
+            theta0 -= LEARNING_RATE * gradient_b0
+            theta1 -= LEARNING_RATE * gradient_b1
+
+            # MSE :
+            mse = (error ** 2).mean()
+            MSE_HISTORY.append(mse)
+
+        # Dénormalisation des paramètres :
+        theta1_denorm = theta1 * (y_max - y_min) / (x_max - x_min)
+        theta0_denorm = y_min + (y_max - y_min) * (theta0 - theta1 * x_min / (x_max - x_min))
+
+        return theta0_denorm, theta1_denorm
+
     except Exception as e:
-        logger.error(f"Lors du calcul du MSE : {e}")
-        return sys.exit(1)
+        LOGGER.error(f"Erreur pendant la descente de gradient : {e}")
+        sys.exit(1)
+
+#------------------------------------------------------------------------------
+def save_values(theta0: float=0.0, theta1: float=0.0) -> None:
+
+    params = {
+        "theta0": theta0,
+        "theta1": theta1,
+    }
+
+    with open("thetas.json", "w") as f:
+        json.dump(params, f)
 
 
 #------------------------------------------------------------------------------
@@ -121,18 +105,15 @@ def main() -> int:
     # [1]. Récupération des données :
     data = recup_data("data.csv")
 
-    # [2]. Chargement et affichage des données + nuage de points :
-    save_graph(data)
+    # [2]. Descente de gradiant:
+    theta_0, theta_1 = descente_gradiant(data, THETA_0, THETA_1)
 
-    # [3]. Calcul de la fonction de cout (MSE) :
-    mean_squarred_error(data, THETA_0, THETA_1)
+    # [3]. Sauvegarde des variables theta0 et theta1:
+    save_values(theta_0, theta_1)
 
-    
     return 0
 
-# =============================== PROGRAMME ===================================
+
+# ================================= PROGRAMME ==================================
 if __name__ == "__main__":
     sys.exit(main())
-
-
-
