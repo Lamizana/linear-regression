@@ -5,12 +5,11 @@ import matplotlib.pyplot as plt
 # -----------------------
 # Données d'entrée
 # -----------------------
-data = pd.DataFrame({
-    "Heures": [1, 2, 3, 4],
-    "Notes": [6, 6.5, 7.5, 8]
-})
-X = data["Heures"].values
-y = data["Notes"].values
+
+data = pd.read_csv("data.csv")
+
+X = data["km"].values
+y = data["price"].values
 
 # -----------------------
 # Initialisation

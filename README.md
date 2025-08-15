@@ -10,7 +10,7 @@ Dans ce projet, on va mettre en œuvre notre premier algorithme d'apprentissage 
 > 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
 ```
 
-----------------------------------------------------------------------------
+---
 
 ## Avant-propos
 
@@ -22,11 +22,15 @@ T, telle que mesurée par P, s'améliore avec l'expérience E. »
 
 Tom M. Mitchell
 
+---
+
 ## Instruction
 
 L'apprentissage automatique est un domaine de l'informatique en plein essor qui peut sembler un peu compliqué et réservé aux mathématiciens. Vous avez peut-être entendu parler des réseaux neuronaux ou du regroupement k-means, mais vous ne comprenez pas comment ils fonctionnent ni comment coder ce type d'algorithmes...
 
 Mais ne vous inquiétez pas, nous allons commencer par un algorithme simple et basique d'apprentissage automatique.
+
+---
 
 ## Objectif
 
@@ -36,6 +40,8 @@ Pour ce projet, vous devrez créer un programme qui prédit le prix d'une voitur
 en utilisant un train de fonctions linéaires ***(linear function)*** avec un algorithme de descente de gradient ***(gradient descent algorithm)***.
 Nous travaillerons sur un exemple précis pour ce projet, mais une fois que vous aurez terminé, vous serez en mesure d'utiliser l'algorithme avec n'importe quel autre ensemble de données.
 
+---
+
 ## Instruction générales
 
 Dans ce projet, vous êtes libre d'utiliser le langage que vous voulez.
@@ -44,6 +50,8 @@ Vous êtes également libre d'utiliser les bibliothèques de votre choix, **à c
 
 > [!NOTE]
 > Vous devriez utiliser un langage qui vous permet de visualiser facilement vos données: cela vous sera très utile pour le débogage.
+
+---
 
 ## Partie obligatoire
 
@@ -68,7 +76,19 @@ Une fois la régression linéaire terminée, vous enregistrerez les variables **
 Vous utiliserez les formules suivantes :
 
 > [!IMPORTANT]
-> 
+> Notez que l'estimation du prix (estimatePrice) est la même que dans notre premier programme, mais ici, 
+> elle utilise vos valeurs temporaires theta0 et theta1 calculées en dernier.
+> N'oubliez pas non plus de mettre à jour simultanément theta0 et theta1.
+
+---
+
+## Partie Bonus
+
+Voici quelques bonus qui pourraient vous être très utiles :
+    - Représenter les données sous forme de graphique pour voir leur répartition.
+    - Représenter la ligne résultant de votre régression linéaire dans le même graphique, pour voir
+    le résultat de votre travail !
+    - Un programme qui calcule la précision de votre algorithme.
 
 ## Niveau minimal des logs affichés (INFO, DEBUG, WARNING, ERROR, CRITICAL)
 
