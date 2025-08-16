@@ -2,9 +2,8 @@
 import sys
 import json
 import numpy as np
-import pandas as pd                                 # type: ignore #ignore
-import matplotlib.pyplot as plt                     # type: ignore #ignore
-
+import pandas as pd
+import matplotlib.pyplot as plt
 from logger import setup_logger, GREEN_B
 
 # =============================== CONSTANTES ===================================
@@ -72,7 +71,7 @@ def save_regression_graph(data: pd.DataFrame, theta_0: float, theta_1: float):
     return
 
 #------------------------------------------------------------------------------
-def recup_theta(file : str="") -> list[float]:
+def recup_theta(file : str="") -> tuple[float, float]:
 
     theta0 = theta1 = 0.0
     try:
@@ -116,7 +115,7 @@ def mean_squared_error(y, y_pred) -> float:
     mse = 0
     mse = ((y - y_pred) ** 2).mean()
 
-    return mse
+    return float(mse)
 
 #------------------------------------------------------------------------------
 def mean_absolute_error(y, y_pred) -> float:
@@ -144,9 +143,8 @@ def mean_absolute_error(y, y_pred) -> float:
     0.5
     """
 
-    mae = 0
     mae = np.abs(y - y_pred).mean()
-    return mae
+    return float(mae)
 
 #------------------------------------------------------------------------------
 def r2_score(y, y_pred) -> float:
@@ -174,14 +172,13 @@ def r2_score(y, y_pred) -> float:
     >>> y = np.array([3, -0.5, 2, 7])
     >>> y_pred = np.array([2.5, 0.0, 2, 8])
     >>> r2_score(y, y_pred)
-    0.9486
+    0.9486081370449679
     """
 
-    r2 = 0
     ss_res = ((y - y_pred) ** 2).sum()
     ss_tot = ((y - y.mean()) ** 2).sum()
     r2 = 1 - (ss_res / ss_tot)
-    return r2
+    return float(r2)
 
 #------------------------------------------------------------------------------
 def calcul_precision(data: pd.DataFrame, theta0: float, theta1: float) -> None:
@@ -222,9 +219,9 @@ def calcul_precision(data: pd.DataFrame, theta0: float, theta1: float) -> None:
     ...     "price": [15000, 9000, 12000]
     ... })
     >>> calcul_precision(data, theta0=2000, theta1=-0.05)
-    MSE (Mean Squared Error) = 1234567.89
-    MAE (Mean Absolute Error) = 789.12
-    R² (coefficient de détermination) = 0.9123
+    MSE (Mean Squared Error) = 201750000.00
+    MAE (Mean Absolute Error) = 14166.67
+    R² (coefficient de détermination) = -32.6250
     """
 
 
