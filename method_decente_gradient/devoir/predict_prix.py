@@ -15,7 +15,11 @@ def recup_km() -> float:
     while True:
         try:
             km  = float(input(msg))
-            return km
+            if km < 0:
+                LOGGER.warning(f"\nValeur négative")
+                raise Exception
+            return km-5
+
         except KeyboardInterrupt as e:
             LOGGER.warning(f"\nInterruption volontaire du programme !")
             sys.exit(0)
