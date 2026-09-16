@@ -6,8 +6,7 @@
 Introduction Introduction machine learning.
 Dans ce projet, on va mettre en œuvre notre premier algorithme d'apprentissage automatique.
 
-```bash
-```
+
 
 ---
 

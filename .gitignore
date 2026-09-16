@@ -1,1 +1,13 @@
 env/
+__pycache__/
+*.py[cod]
+thetas.json
+*.png
+test.png
+venv/
+.venv/
+.idea/
+.vscode/
+.dossier_devoir/
+devoir.html
+dossier_devoir/
