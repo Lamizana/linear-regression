@@ -93,9 +93,11 @@ Votre partenaire IA vous soutient, mais vous restez entièrement responsable des
 - L'IA peut vous rendre plus rapide, mais vos pairs vous rendent meilleur. La collaboration, la discussion et la remise en question mutuelle sont la clé du succès.
 - Soyez transparent sur l'utilisation de l'IA dans vos projets et identifiez clairement ce qui a été généré par des outils IA.
 
-> ✓ **Bonne pratique** : j'ai demandé à l'IA de m'aider à générer des tests unitaires pour mon API. Je les ai relus avec mon coéquipier, et nous les avons ajustés pour couvrir les cas limites. Cela a fait gagner du temps, et nous avons tous les deux appris quelque chose de nouveau.
+> [!IMPORTANT] ✓ **Bonne pratique**
+> j'ai demandé à l'IA de m'aider à générer des tests unitaires pour mon API. Je les ai relus avec mon coéquipier, et nous les avons ajustés pour couvrir les cas limites. Cela a fait gagner du temps, et nous avons tous les deux appris quelque chose de nouveau.
 
-> ✗ **Mauvaise pratique** : j'ai demandé à l'IA de générer toute l'architecture de mon projet. Elle « fonctionne », mais lorsqu'on me demande d'expliquer les choix de conception lors de la soutenance, je ne peux pas. Je perds en crédibilité et j'échoue.
+> [!WARNING] ✗ **Mauvaise pratique**
+> j'ai demandé à l'IA de générer toute l'architecture de mon projet. Elle « fonctionne », mais lorsqu'on me demande d'expliquer les choix de conception lors de la soutenance, je ne peux pas. Je perds en crédibilité et j'échoue.
 
 ---
 
