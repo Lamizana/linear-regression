@@ -1,8 +1,8 @@
 # ================================ IMPORT =====================================
 import sys
 import json
-import pandas as pd                                 # type: ignore #ignore
-import matplotlib.pyplot as plt                     # type: ignore #ignore
+import pandas as pd                                
+import matplotlib.pyplot as plt                     
 import numpy as np
 
 from logger import setup_logger, GREEN_B

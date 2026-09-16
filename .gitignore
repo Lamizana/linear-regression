@@ -1,4 +1,5 @@
 env/
+.env/
 __pycache__/
 *.py[cod]
 thetas.json
@@ -9,5 +10,3 @@ venv/
 .idea/
 .vscode/
 .dossier_devoir/
-devoir.html
-dossier_devoir/

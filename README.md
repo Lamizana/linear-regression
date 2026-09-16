@@ -9,6 +9,7 @@
 # Ft_linear_regression
 
 > Created by alex lamizana in 31/05/2025
+
 > Mise a jour : 15/09/2026
 
 Introduction au machine learning.
@@ -68,10 +69,10 @@ Votre partenaire IA vous soutient, mais vous restez entièrement responsable des
 
 ### Message principal
 
-- ☛ Visez une utilisation mature et responsable de l'IA.
-- ☛ Ne laissez jamais l'IA prendre les décisions à votre place — surtout lorsqu'elle n'a pas connaissance de vos objectifs, contraintes ou dynamiques d'équipe.
-- ☛ Maintenez créativité, innovation et supervision humaine grâce à une collaboration active avec vos pairs. L'IA est entraînée sur des données existantes et génère rarement de véritables nouvelles idées.
-- ☛ Restez informé des tendances émergentes et soyez prêt à vous adapter à de nouveaux concepts et technologies.
+- Visez une utilisation mature et responsable de l'IA.
+- Ne laissez jamais l'IA prendre les décisions à votre place — surtout lorsqu'elle n'a pas connaissance de vos objectifs, contraintes ou dynamiques d'équipe.
+- Maintenez créativité, innovation et supervision humaine grâce à une collaboration active avec vos pairs. L'IA est entraînée sur des données existantes et génère rarement de véritables nouvelles idées.
+- Restez informé des tendances émergentes et soyez prêt à vous adapter à de nouveaux concepts et technologies.
 
 ### Règles d'apprentissage
 
@@ -149,15 +150,3 @@ Voici quelques bonus qui pourraient vous être très utiles :
 > validé toutes les exigences obligatoires, votre partie bonus ne sera pas du tout évaluée.
 
 ---
-
-## Soumission et évaluation par les pairs
-
-Rendez votre travail dans votre dépôt Git comme d'habitude. Seul le travail présent à l'intérieur
-de votre dépôt sera évalué lors de la soutenance. N'hésitez pas à vérifier soigneusement les noms
-de vos dossiers et fichiers pour vous assurer qu'ils sont corrects.
-
-Voici les points que votre correcteur devra vérifier :
-
-- L'absence de bibliothèques qui font le travail à votre place.
-- L'utilisation de l'hypothèse spécifiée.
-- L'utilisation de la fonction d'entraînement spécifiée.
