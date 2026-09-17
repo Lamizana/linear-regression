@@ -201,12 +201,13 @@ def main():
             logging.error(
                 f"{RED}Le nombre de kilométres doit être supérieur à 0 !{RESET}"
             )
-            return 2
+            raise
 
         if KM > KM_MAX:
             logging.warning(
                 f"{YELLOW}Tu dépasse la limite de kilomètres établie, tu va devoir payer pour qu'on prenne ta caisse !{RESET}"
             )
+            raise
 
         # [4] Prédiction pour X kilometres :
         predict = linear_regression(KM, beta_0, beta_1)
