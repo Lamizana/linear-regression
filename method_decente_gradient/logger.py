@@ -1,24 +1,28 @@
 import logging
 
 # ============================== CONSTANTES ===================================
-GREEN = "\033[32m"
-YELLOW = "\033[33m"
-RED = "\033[31m"
+GREEN = "\033[32m"          # vert
+GREEN_B = "\033[1;32m"      # vert gras
+GREEN_I = "\033[3;32m"      # vert italique
 
-GREEN_B = "\033[1;32m"   # vert gras
-YELLOW_B = "\033[1;33m"  # jaune gras
-RED_B = "\033[1;31m"     # rouge gras
+YELLOW = "\033[33m"         # jaune
+YELLOW_B = "\033[1;33m"     # jaune gras
+YELLOW_I = "\033[3;33m"     # jaune italique
 
-GREEN_I = "\033[3;32m"   # vert italique
-YELLOW_I = "\033[3;33m"  # jaune italique
-RED_I = "\033[3;31m"     # rouge italique
+RED = "\033[31m"            # rouge
+RED_B = "\033[1;31m"        # rouge gras
+RED_I = "\033[3;31m"        # rouge italique
+RED_D = "\033[1;41m"        # fond rouge + texte blanc (très visible)
 
 RESET = "\033[0m"
 
 # ================================ CLASSE =====================================
 class ColorFormatter(logging.Formatter):
     def format(self, record):
-        if record.levelno >= logging.ERROR:
+        if record.levelno >= logging.CRITICAL:
+            self._style._fmt = f'{RED_D}[%(levelname)s] %(message)s (%(filename)s:%(lineno)d){RESET}'
+
+        elif record.levelno >= logging.ERROR:
             self._style._fmt = f'{RED_B}[%(levelname)s]{RESET}{RED} %(message)s {RESET}{RED_I}(%(filename)s:%(lineno)d){RESET}'
 
         elif record.levelno >= logging.WARNING:
@@ -30,6 +34,7 @@ class ColorFormatter(logging.Formatter):
         else:
             self._style._fmt = '[%(levelname)s] %(message)s'
         return super().format(record)
+
 
 # ============================== FONCTIONS ====================================
 def setup_logger(level=logging.INFO):

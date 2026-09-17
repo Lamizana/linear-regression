@@ -1,154 +1,112 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/NumPy-1.24-010101?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
-  <img src="https://img.shields.io/badge/Pandas-2.0-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
-  <img src="https://img.shields.io/badge/Matplotlib-3.7-FFCA28?style=for-the-badge&logo=matplotlib&logoColor=white" alt="Matplotlib">
+  <img src="https://img.shields.io/badge/NumPy-1.26-010101?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+  <img src="https://img.shields.io/badge/Pandas-2.2-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+  <img src="https://img.shields.io/badge/Matplotlib-3.9-FFCA28?style=for-the-badge&logo=matplotlib&logoColor=white" alt="Matplotlib">
   <img src="https://img.shields.io/badge/Topic-Machine%20Learning-2088FF?style=for-the-badge&logoColor=white" alt="Machine Learning">
 </p>
 
-# Ft_linear_regression
+# Linear Regression
 
-> Created by alex lamizana in 31/05/2025
+> Created by Alex Lamizana on 31/05/2025
 
-> Mise a jour : 15/09/2026
+> Dernière mise à jour : 15/09/2026
 
-Introduction au machine learning.
-Dans ce projet, on va mettre en œuvre notre premier algorithme d'apprentissage automatique.
+Introduction au machine learning : mise en œuvre d'une **régression linéaire simple** selon
+**deux approches différentes**, organisées en deux parties indépendantes :
 
----
-
-## Avant-propos
-
-Ce que je pense être la meilleure définition de l'apprentissage automatique :
-
-« On dit d'un programme informatique qu'il apprend de l'expérience E en ce qui concerne une certaine
-classe de tâches T et une mesure de performance P, si sa performance pour des tâches dans
-T, telle que mesurée par P, s'améliore avec l'expérience E. »
-
-Tom M. Mitchell
+| Approche | Dossier | Méthode | Données |
+|---|---|---|---|
+| **Moindres carrés** (OLS) | `method_moindre_carre/` | Formule analytique (solution fermée) | Notes d'école + prix de voiture |
+| **Descente de gradient** | `method_decente_gradient/` | Optimisation itérative (10 000 étapes) | Prix de voiture |
 
 ---
 
-## Instruction
-
-L'apprentissage automatique est un domaine de l'informatique en plein essor qui peut sembler un peu compliqué et réservé aux mathématiciens. Vous avez peut-être entendu parler des réseaux neuronaux ou du regroupement k-means, mais vous ne comprenez pas comment ils fonctionnent ni comment coder ce type d'algorithmes...
-
-Mais ne vous inquiétez pas, nous allons commencer par un algorithme simple et basique d'apprentissage automatique.
-
----
-
-## Objectif
-
-L'objectif de ce projet est de nous initier au concept de base de l'apprentissage automatique.
-
-Pour ce projet, vous devrez créer un programme qui prédit le prix d'une voiture en utilisant une fonction linéaire ***(linear function)*** entraînée par un algorithme de descente de gradient ***(gradient descent algorithm)***.
-Nous travaillerons sur un exemple précis pour ce projet, mais une fois que vous aurez terminé, vous serez en mesure d'utiliser l'algorithme avec n'importe quel autre ensemble de données.
-
----
-
-## Instruction générales
-
-Dans ce projet, vous êtes libre d'utiliser le langage que vous voulez.
-
-Vous êtes également libre d'utiliser les bibliothèques de votre choix, **à condition qu'elles ne fassent pas tout le travail à votre place**. Par exemple, l'utilisation de numpy.polyfit de python est considérée comme une tricherie.
-
-> [!NOTE]
-> Vous devriez utiliser un langage qui vous permet de visualiser facilement vos données: cela vous sera très utile pour le débogage.
-
----
-
-## AI Instructions
-
-### Contexte
-
-L'IA est désormais un partenaire de codage puissant — aux côtés de vos pairs — pour aborder des projets vastes et exigeants. Vous la guiderez à travers les aspects techniques et non techniques de votre travail.
-
-Les outils d'IA peuvent booster votre efficacité et améliorer la qualité de vos livrables, mais vous devez être capable d'explorer en profondeur n'importe quelle partie du projet sans dépendre d'eux.
-
-Votre partenaire IA vous soutient, mais vous restez entièrement responsable des décisions techniques éclairées, que vous devez être capable d'expliquer et de défendre clairement.
-
-### Message principal
-
-- Visez une utilisation mature et responsable de l'IA.
-- Ne laissez jamais l'IA prendre les décisions à votre place — surtout lorsqu'elle n'a pas connaissance de vos objectifs, contraintes ou dynamiques d'équipe.
-- Maintenez créativité, innovation et supervision humaine grâce à une collaboration active avec vos pairs. L'IA est entraînée sur des données existantes et génère rarement de véritables nouvelles idées.
-- Restez informé des tendances émergentes et soyez prêt à vous adapter à de nouveaux concepts et technologies.
-
-### Règles d'apprentissage
-
-- Gardez la direction intellectuelle de vos projets et prenez vos propres décisions éclairées.
-- Priorisez l'intelligence collective de votre équipe et de vos pairs.
-- Restez activement informé de l'évolution continue des technologies IA.
-
-### Impacts de la phase
-
-- Compétences en ingénierie IA.
-- Efficacité accrue.
-- Plus grande fiabilité et qualité.
-- Un état d'esprit pionnier.
-
-### Commentaires et exemples
-
-- Vos pairs peuvent identifier les compromis, remettre en question les hypothèses et vous aider à vous améliorer. La première réponse d'une IA n'est pas forcément la meilleure — elle peut manquer d'efficacité, de sécurité ou de réelle valeur ajoutée. Plus que jamais, vous devez vous appuyer sur vos pairs.
-- L'IA peut vous rendre plus rapide, mais vos pairs vous rendent meilleur. La collaboration, la discussion et la remise en question mutuelle sont la clé du succès.
-- Soyez transparent sur l'utilisation de l'IA dans vos projets et identifiez clairement ce qui a été généré par des outils IA.
-
-> [!IMPORTANT]
-> ✓ **Bonne pratique**: j'ai demandé à l'IA de m'aider à générer des tests unitaires pour mon API. Je les ai relus avec mon coéquipier, et nous les avons ajustés pour couvrir les cas limites. Cela a fait gagner du temps, et nous avons tous les deux appris quelque chose de nouveau.
-
-> [!WARNING]
-> ✗ **Mauvaise pratique**: j'ai demandé à l'IA de générer toute l'architecture de mon projet. Elle « fonctionne », mais lorsqu'on me demande d'expliquer les choix de conception lors de la soutenance, je ne peux pas. Je perds en crédibilité et j'échoue.
-
----
-
-## Partie obligatoire
-
-Vous allez mettre en œuvre une régression linéaire simple avec une seule caractéristique - dans ce cas, le kilométrage de la voiture .
-
-Pour ce faire, vous devez créer deux programmes :
-
-- Le premier programme sera utilisé pour prédire le prix d'une voiture pour un kilométrage donné. Lorsque vous lancez le programme, il doit vous demander un kilométrage, puis vous donner le prix estimé pour ce kilométrage. 
-Le programme utilisera l'hypothèse suivante pour prédire le prix :
-
-  - ```estimateP rice(mileage) = θ0 + (θ1 ∗ mileage)```
-
-    - θ₀ : le prix de départ (si la voiture a 0 km),
-    - θ₁ : la perte de valeur par kilomètre.
-
-Le but de l’apprentissage est de trouver les meilleurs θ₀ et θ₁ pour que cette équation corresponde le mieux possible à tes données réelles.
-
-> Avant l'exécution du programme d'entraînement, theta0 et theta1 sont mis à 0.
-
-- Le second programme sera utilisé pour entraîner votre modèle. Il lira votre fichier de données et effectuera une régression linéaire sur les données.
-Une fois la régression linéaire terminée, vous enregistrerez les variables **theta0 et theta1** pour les utiliser dans le premier programme.
-Vous utiliserez les formules suivantes :
+## Structure
 
 ```
-tmpθ0 = learningRate × (1/m) × Σ (estimatePrice(mileage[i]) − price[i]),     pour i de 0 à m−1
-
-tmpθ1 = learningRate × (1/m) × Σ (estimatePrice(mileage[i]) − price[i]) × mileage[i],   pour i de 0 à m−1
+linear-regression/
+├── requirements.txt
+├── method_moindre_carre/            ← Partie 1 : moindres carrés (OLS)
+│   ├── predict_note_ecole/          ← Prédiction de notes selon les heures d'étude
+│   └── predict_prix_voiture/        ← Prédiction du prix d'une voiture selon le kilométrage
+└── method_decente_gradient/         ← Partie 2 : descente de gradient
+    ├── entrainement.py              ← Entraîne le modèle → thetas.json
+    ├── predict_prix.py              ← Prédiction interactive du prix
+    ├── bonus.py                     ← Évaluation (MSE, MAE, R²) + visualisation
+    ├── logger.py                    ← Logging coloré partagé
+    └── utils.py                     ← Fonctions partagées (chargement CSV, lecture des thetas)
 ```
 
-Je vous laisse deviner ce que vaut m 😉
+---
 
-> [!IMPORTANT]
-> Notez que l'estimation du prix (estimatePrice) est la même que dans notre premier programme, mais ici, 
-> elle utilise vos valeurs temporaires theta0 et theta1 calculées en dernier.
-> N'oubliez pas non plus de mettre à jour simultanément theta0 et theta1.
+## Installation
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+> Les images (`*.png`) et le fichier `thetas.json` sont générés à l'exécution et sont ignorés par git.
 
 ---
 
-## Partie Bonus
+## Partie 1 — Moindres carrés (`method_moindre_carre/`)
 
-Voici quelques bonus qui pourraient vous être très utiles :
-    - Représenter les données sous forme de graphique pour voir leur répartition.
-    - Représenter la ligne résultant de votre régression linéaire dans le même graphique, pour voir
-    le résultat de votre travail !
-    - Un programme qui calcule la précision de votre algorithme.
+Régression linéaire par **solution analytique** (OLS) : calcul direct de la pente `beta_1`
+et de l'ordonnée à l'origine `beta_0`.
 
-> [!IMPORTANT]
-> La partie bonus ne sera évaluée que si la partie obligatoire est PARFAITE. Parfaite signifie que
-> la partie obligatoire a été intégralement réalisée et fonctionne sans défaillance. Si vous n'avez pas
-> validé toutes les exigences obligatoires, votre partie bonus ne sera pas du tout évaluée.
+- **Notes d'école** : prédit une note pour 2,5 h d'étude.
+
+  ```bash
+  cd method_moindre_carre/predict_note_ecole && python3 predict_note.py
+  ```
+
+- **Prix de voiture** : prédit un prix pour 20 000 km.
+
+  ```bash
+  cd method_moindre_carre/predict_prix_voiture && python3 predict_prix.py
+  ```
+
+Chaque script enregistre un nuage de points et le graphique avec la droite de régression.
 
 ---
+
+## Partie 2 — Descente de gradient (`method_decente_gradient/`)
+
+Régression linéaire par **descente de gradient** sur données normalisées
+(min-max vers `[0, 1]`), puis dénormalisation des paramètres `theta0` / `theta1`.
+
+1. **Entraînement** : lit `data.csv`, ajuste les paramètres, sauvegarde `thetas.json`.
+
+   ```bash
+   cd method_decente_gradient && python3 entrainement.py
+   ```
+
+2. **Prédiction** : demande un kilométrage et estime le prix (`theta0 + theta1 * mileagge`).
+
+   ```bash
+   cd method_decente_gradient && python3 predict_prix.py
+   ```
+
+3. **Bonus** : trace la droite de régression et calcule MSE, MAE et R².
+
+   ```bash
+   cd method_decente_gradient && python3 bonus.py
+   ```
+
+Le détail du sujet (énoncé, formules, consignes) se trouve dans
+[`method_decente_gradient/README.md`](method_decente_gradient/README.md).
+
+---
+
+## Comparaison des deux méthodes
+
+| Aspect | Moindres carrés | Descente de gradient |
+|---|---|---|
+| Résolution | Analytique (formule fermée) | Itérative (10 000 étapes) |
+| Normalisation | Aucune | Min-max vers `[0, 1]` |
+| Persistance des paramètres | Aucune (calcul à la volée) | `thetas.json` |
+| Métriques | Aucune (visuel uniquement) | MSE, MAE, R² |
+| Type de code | Script autonome par cas d'usage | Modulaire (entraînement / prédiction / évaluation) |

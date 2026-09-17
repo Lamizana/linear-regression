@@ -1,90 +1,89 @@
 # ================================ IMPORT =====================================
 import sys
-import json
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from logger import setup_logger, GREEN_B
+from utils import recup_data, recup_theta
 
 # =============================== CONSTANTES ===================================
 LOGGER = setup_logger()
 FILE_DATA = "data.csv"
 FILE_THETA = "thetas.json"
-GRAH = "regression_lineaire.png"
+GRAPH = "regression_lineaire.png"
 
 # =============================== FONCTIONS ====================================
-def recup_data(file: str=""):
+def save_regression_graph(data: pd.DataFrame, theta_0: float, theta_1: float):
+    """
+    Trace et sauvegarde le graphique de la régression linéaire.
+
+    Parameters
+    ----------
+    data : pandas.DataFrame
+        DataFrame contenant les colonnes 'km' et 'price'.
+    theta_0 : float
+        Ordonnée à l'origine de la droite de régression.
+    theta_1 : float
+        Pente de la droite de régression.
+
+    Raises
+    ------
+    KeyError
+        Si 'km' ou 'price' sont absents de `data`.
+    OSError
+        Si le fichier ne peut pas être sauvegardé.
+    """
+
 
     try:
-        data = pd.read_csv(file)
-        for col in data.columns:
-            data[col] = pd.to_numeric(data[col], errors='raise')
+        if "km" not in data.columns or "price" not in data.columns:
+            raise KeyError("Le DataFrame doit contenir les colonnes 'km' et 'price'.")
 
-        LOGGER.info(f"Données du fichier '{file}' récupérer avec succès :\n{data.head()}")
+        # Trace un graphique simple (nuage de points) :
+        plt.scatter(
+            data["km"].values,
+            data["price"].values,
+            color='blue',
+            label='prix')
+
+        # Droite de regresion :
+        x = np.array(data["km"].values, dtype=float)
+
+        x_vals = list(x)
+        y_vals = [theta_0 + theta_1 * km for km in x]
+
+        # Ajoute le point à l'origine :
+        x_vals.insert(0, 0)
+        y_vals.insert(0, theta_0)
+
+        plt.plot(x_vals,
+                 y_vals,
+                 color='red',
+                 label='Régression')
+
+        # Titrages et labels :
+        plt.title("Évolution du prix en fonction des kilomètres parcourus")
+        plt.xlabel("Kilomètres parcourus")
+        plt.ylabel("Prix du véhicule (€)")
+        plt.legend()
+
+        # Reglage de la fenetre :
+        plt.grid(True)
+        plt.xlim(0, data["km"].max() + 20_000)
+        plt.ylim(0, data["price"].max() + 2_000)
+
+        # Sauvegarde du graphique :
+        plt.savefig(GRAPH)
+        LOGGER.info(f"Fichier {GRAPH} enregistré")
+
     except Exception as e:
-        LOGGER.error(f"Lors de la récuperation des données : {e}")
-        return sys.exit(1)
-
-    return data
-
-
-#------------------------------------------------------------------------------
-def save_regression_graph(data: pd.DataFrame, theta_0: float, theta_1: float):
-
-    # Trace un graphique simple (nuage de points) :
-    plt.scatter(
-        data["km"].values,
-        data["price"].values,
-        color='blue',
-        label='prix')
-    
-    # Droite de regresion :
-    x = np.array(data["km"].values, dtype=float)
-
-    x_vals = list(x)
-    y_vals = [theta_0 + theta_1 * km for km in x]
-
-    # Ajoute le point à l'origine :
-    x_vals.insert(0, 0)
-    y_vals.insert(0, theta_0)
-
-    plt.plot(x_vals,
-             y_vals,
-             color='red',
-             label='Régression')
-    
-    # Titrages et labels :
-    plt.title("Évolution du prix en fonction des kilomètres parcourus")
-    plt.xlabel("Kilomètres parcourus")
-    plt.ylabel("Prix du véhicule (€)")
-    plt.legend()
-    
-    # Reglage de la fenetre :
-    plt.grid(True)
-    plt.xlim(0, data["km"].max() + 20_000)
-    plt.ylim(0, data["price"].max() + 2_000)
-
-    # Sauvegarde du graphique :
-    plt.savefig(GRAH)    
-    LOGGER.info(f"Fichier {GRAH} enregistre avec succees")
-
+        LOGGER.error(f"Erreur lors de la création du graphique : {e}")
+        raise
+    finally:
+        plt.close()
     return
 
-#------------------------------------------------------------------------------
-def recup_theta(file : str="") -> tuple[float, float]:
-
-    theta0 = theta1 = 0.0
-    try:
-        with open(file, "r") as f:
-            data  = json.load(f)
-            theta0 = float(data.get("theta0"))
-            theta1 = float(data.get("theta1"))
-        LOGGER.info(f"- Theta0 = {theta0}\t- Theta1 = {theta1}")
-    except Exception as e:
-        LOGGER.error(f"Erreur lors de la recuperation des valeurs Theta : {e}")
-        sys.exit(1)
-    
-    return theta0, theta1
 
 #------------------------------------------------------------------------------
 def mean_squared_error(y, y_pred) -> float:
@@ -102,18 +101,15 @@ def mean_squared_error(y, y_pred) -> float:
     -------
     float
         La valeur du MSE, c'est-à-dire la moyenne des carrés des écarts entre y et y_pred.
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> y = np.array([3, -0.5, 2, 7])
-    >>> y_pred = np.array([2.5, 0.0, 2, 8])
-    >>> mean_squared_error(y, y_pred)
-    0.375
     """
 
-    mse = 0
-    mse = ((y - y_pred) ** 2).mean()
+    try:
+        mse = 0
+        mse = ((y - y_pred) ** 2).mean()
+
+    except (KeyError, ValueError, TypeError) as e:
+        LOGGER.error(f"Valeurs de theta invalides dans 'MSE' : {e}")
+        raise
 
     return float(mse)
 
@@ -133,17 +129,17 @@ def mean_absolute_error(y, y_pred) -> float:
     -------
     float
         La valeur du MAE, c'est-à-dire la moyenne des valeurs absolues des écarts entre y et y_pred.
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> y = np.array([3, -0.5, 2, 7])
-    >>> y_pred = np.array([2.5, 0.0, 2, 8])
-    >>> mean_absolute_error(y, y_pred)
-    0.5
     """
 
-    mae = np.abs(y - y_pred).mean()
+
+    try:
+
+        mae = np.abs(y - y_pred).mean()
+
+    except (KeyError, ValueError, TypeError) as e:
+        LOGGER.error(f"Valeurs de theta invalides dans 'MAE' : {e}")
+        raise
+
     return float(mae)
 
 #------------------------------------------------------------------------------
@@ -165,14 +161,6 @@ def r2_score(y, y_pred) -> float:
     -------
     float
         Le coefficient R² de la régression.
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> y = np.array([3, -0.5, 2, 7])
-    >>> y_pred = np.array([2.5, 0.0, 2, 8])
-    >>> r2_score(y, y_pred)
-    0.9486081370449679
     """
 
     ss_res = ((y - y_pred) ** 2).sum()
@@ -210,18 +198,6 @@ def calcul_precision(data: pd.DataFrame, theta0: float, theta1: float) -> None:
     ------
     KeyError
         Si les colonnes "km" ou "price" ne sont pas présentes dans le DataFrame.
-
-    Examples
-    --------
-    >>> import pandas as pd
-    >>> data = pd.DataFrame({
-    ...     "km": [50000, 120000, 80000],
-    ...     "price": [15000, 9000, 12000]
-    ... })
-    >>> calcul_precision(data, theta0=2000, theta1=-0.05)
-    MSE (Mean Squared Error) = 201750000.00
-    MAE (Mean Absolute Error) = 14166.67
-    R² (coefficient de détermination) = -32.6250
     """
 
 
@@ -244,18 +220,26 @@ def calcul_precision(data: pd.DataFrame, theta0: float, theta1: float) -> None:
 #------------------------------------------------------------------------------
 def main() -> int:
     """
-    Fonction programme principal>
+    Fonction programme principal
     """
 
-    # [1]. Récupération des données :
-    data = recup_data(FILE_DATA)
-    theta0, theta1 = recup_theta(FILE_THETA)
+    print("Bienvenue dans les BONUS de linar regression.")
+    try:
+        # [1]. Récupération des données :
+        data = recup_data(FILE_DATA)
+        theta0, theta1 = recup_theta(FILE_THETA)
 
-    # [2]. Creation du graphique :
-    save_regression_graph(data, theta0, theta1)
+        # [2]. Creation du graphique :
+        save_regression_graph(data, theta0, theta1)
 
-    # [3]. Precision de l'algorithme :
-    calcul_precision(data, theta0, theta1)
+        # [3]. Precision de l'algorithme :
+        calcul_precision(data, theta0, theta1)
+
+    except FileNotFoundError:
+        return 2
+    except Exception:
+        LOGGER.critical(f"Fermeture du programme !")
+        return 1
 
     return 0
 
