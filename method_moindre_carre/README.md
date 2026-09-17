@@ -33,7 +33,7 @@ Prédit le prix d'une voiture (`€`) en fonction de son kilométrage.
 
 - Données : `predict_prix.csv` (colonnes `km`, `price`)
 - Sortie : `regression_lineaire_voiture.png`
-- Prédiction pour 20 000 km
+- Prédiction pour `KM` kilomètres (constante modifiable en tête de `predict_prix.py`, défaut : `500_000`)
 
 ```bash
 cd predict_prix_voiture && python3 predict_prix.py

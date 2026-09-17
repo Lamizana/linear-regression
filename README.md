@@ -57,16 +57,18 @@ pip install -r requirements.txt
 Régression linéaire par **solution analytique** (OLS) : calcul direct de la pente `beta_1`
 et de l'ordonnée à l'origine `beta_0`.
 
-- **Notes d'école** : prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est configurable via la constante `HEURES` en tête de `predict_note.py` (défaut : `25` h).
+- **Notes d'école** : prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est configurable via la constante `HEURES` en tête de `predict_note.py` (défaut : `2.5` h).
 
   ```bash
-  cd method_moindre_carre/predict_note_ecole && python3 predict_note.py
+  > cd method_moindre_carre/predict_note_ecole
+  > python3 predict_note.py
   ```
 
-- **Prix de voiture** : prédit un prix pour 20 000 km.
+- **Prix de voiture** : prédit un prix selon le kilométrage. Le kilométrage est configurable via la constante `KM` en tête de `predict_prix.py` (défaut : `500_000` km).
 
   ```bash
-  cd method_moindre_carre/predict_prix_voiture && python3 predict_prix.py
+  > cd method_moindre_carre/predict_prix_voiture
+  > python3 predict_prix.py
   ```
 
 Chaque script enregistre un nuage de points et le graphique avec la droite de régression.
@@ -75,25 +77,27 @@ Chaque script enregistre un nuage de points et le graphique avec la droite de r�
 
 ## Partie 2: Descente de gradient (`method_decente_gradient/`)
 
-Régression linéaire par **descente de gradient** sur données normalisées
-(min-max vers `[0, 1]`), puis dénormalisation des paramètres `theta0` / `theta1`.
+Régression linéaire par **descente de gradient** sur données normalisées   (min-max vers `[0, 1]`), puis dénormalisation des paramètres `theta0` / `theta1`.
 
 1. **Entraînement** : lit `data.csv`, ajuste les paramètres, sauvegarde `thetas.json`.
 
    ```bash
-   cd method_decente_gradient && python3 entrainement.py
+   > cd method_decente_gradient
+   > python3 entrainement.py
    ```
 
 2. **Prédiction** : demande un kilométrage et estime le prix (`theta0 + theta1 * mileagge`).
 
    ```bash
-   cd method_decente_gradient && python3 predict_prix.py
+   > cd method_decente_gradient
+   > python3 predict_prix.py
    ```
 
 3. **Bonus** : trace la droite de régression et calcule MSE, MAE et R².
 
    ```bash
-   cd method_decente_gradient && python3 bonus.py
+   > cd method_decente_gradient
+   > python3 bonus.py
    ```
 
 Le détail du sujet (énoncé, formules, consignes) se trouve dans [**README.md**](method_decente_gradient/README.md).

@@ -43,7 +43,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # ============================== CONSTANTES====================================
-HEURES = 25
+HEURES = 2.5
 
 
 # ================================ FONCTIONS ==================================
