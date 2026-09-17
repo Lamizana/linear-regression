@@ -41,10 +41,17 @@ linear-regression/
 
 ## Installation
 
+Cloner le dépot :
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+> git clone https://github.com/Lamizana/linear-regression.git
+> cd linear-regression
+```
+
+Installer l'environnement :
+```bash
+> python3 -m venv .venv
+> source .venv/bin/activate
+> pip install -r requirements.txt
 ```
 
 > [!NOTE]
