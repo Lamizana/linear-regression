@@ -42,6 +42,10 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# ============================== CONSTANTES====================================
+HEURES = 25
+
+
 # ================================ FONCTIONS ==================================
 def save_graph(data: pd.DataFrame):
     """
@@ -75,14 +79,8 @@ def save_graph(data: pd.DataFrame):
     """
 
     # Trace un graphique simple (nuage de points) :
-    plt.plot(
-        data["Heures"],
-        data["Notes"],
-        marker='o',
-        linestyle = ' ',
-        color='blue'
-    )
-    
+    plt.plot(data["Heures"], data["Notes"], marker="o", linestyle=" ", color="blue")
+
     # Titrage et labels :
     plt.title("Évolution des notes en fonction des heures d'étude")
     plt.xlabel("Heures d'étude")
@@ -92,11 +90,11 @@ def save_graph(data: pd.DataFrame):
     plt.ylim(0, data["Notes"].max() + 1)
 
     # Sauvegarde le graphique :
-    plt.savefig("relation_notes_heures.png")    
+    plt.savefig("relation_notes_heures.png")
     return
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def save_regression_graph(data: pd.DataFrame, beta_0: float, beta_1: float):
     """
     Génère et enregistre un graphique illustrant la relation entre les heures d'étude
@@ -138,24 +136,14 @@ def save_regression_graph(data: pd.DataFrame, beta_0: float, beta_1: float):
     # Enregistre le graphique avec la droite de régression
     """
 
-
     # Trace un graphique simple (nuage de points) :
-    plt.plot(
-        data["Heures"],
-        data["Notes"],
-        marker='o',
-        linestyle = ' ',
-        color='blue'
-    )
-    
+    plt.plot(data["Heures"], data["Notes"], marker="o", linestyle=" ", color="blue")
+
     # Droite de regresion :
     x_vals = data["Heures"]
     y_vals = linear_regression(x_vals, beta_0, beta_1)
-    plt.plot(x_vals,
-             y_vals,
-             color='red',
-             label='Régression')
-    
+    plt.plot(x_vals, y_vals, color="red", label="Régression")
+
     # Titrage et labels :
     plt.title("Évolution des notes en fonction des heures d'étude")
     plt.xlabel("Heures d'étude")
@@ -165,11 +153,11 @@ def save_regression_graph(data: pd.DataFrame, beta_0: float, beta_1: float):
     plt.ylim(0, data["Notes"].max() + 1)
 
     # Sauvegarde le graphique :
-    plt.savefig("regression_lineaire.png")    
+    plt.savefig("regression_lineaire.png")
     return
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def pente(data: pd.DataFrame) -> float:
     """
     Calcule la pente (coefficient directeur) beta_1 d'une régression linéaire simple à l'aide de la méthode des moindres carrés.
@@ -205,26 +193,26 @@ def pente(data: pd.DataFrame) -> float:
     # Moyenne des notes :
     mean_note = data["Notes"].mean()
     print("\n- Moyenne des notes : ", mean_note)
-    
+
     # Moyenne de heures :
     mean_heure = data["Heures"].mean()
     print("- Moyenne des heure : ", mean_heure, "\n")
-    
+
     # Calcul préalable :
     data["Xi - mean_heure"] = [(x - mean_heure) for x in data["Heures"]]
     data["Yi - mean_note"] = [(y - mean_note) for y in data["Notes"]]
     print("Rajout de colonnes :\n", data)
-    
+
     # Calcule la pente (coefficient directeur) beta_1 :
     try:
         a = 0.0
-        b =0.0
+        b = 0.0
         for x, y in zip(data["Xi - mean_heure"], data["Yi - mean_note"]):
             a += x * y
-        
+
         for x in data["Xi - mean_heure"]:
             b += x * x
-            
+
         beta_1 = a / b
     except Exception as e:
         print("Erreur de calcul : ", e)
@@ -232,10 +220,10 @@ def pente(data: pd.DataFrame) -> float:
 
     print(f"\n- Beta_1 = a / b soit {a} / {b}")
     print("- Valeur de la pente (Beta_1) : ", beta_1)
-    return(beta_1)
+    return beta_1
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def origin(data: pd.DataFrame, beta_1: float) -> float:
     """
     Calcule l'ordonnée à l'origine (beta_0) d'une régression linéaire simple.
@@ -276,17 +264,17 @@ def origin(data: pd.DataFrame, beta_1: float) -> float:
     >>> origin(df, beta_1)
     5.25
     """
-    
+
     y = data["Notes"].mean()
     x = data["Heures"].mean()
-    
+
     beta_0 = y - beta_1 * x
     print("- Valeur du point a l'origine : ", beta_0)
-    
+
     return beta_0
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def linear_regression(heure: float, beta_0: float, beta_1: float) -> float:
     """
     Calcule la prédiction d'une note à partir d'un modèle de régression linéaire simple.
@@ -320,12 +308,12 @@ def linear_regression(heure: float, beta_0: float, beta_1: float) -> float:
     La note statistique pour 2.5 travaillée : 7.0
     7.0
     """
-    
+
     predict = beta_0 + beta_1 * heure
     return predict
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def main():
     """
     Fonction principale exécutant les étapes d'une régression linéaire simple :
@@ -364,9 +352,14 @@ def main():
         beta_0 = origin(data, beta_1)
 
         # Étape 4 : Prédiction pour X heures :
-        heure = 2.5
-        predict = linear_regression(heure, beta_0, beta_1)
-        print(f"\nLa note prédit pour {heure} heures travaillée : {predict}/10")
+        if HEURES <= 0:
+            raise ValueError("Le nombre d'heures d'étude doit être supérieur à 0.")
+
+        predict = linear_regression(HEURES, beta_0, beta_1)
+
+        if predict > 10:
+            predict = 10
+        print(f"\nLa note prédit pour {HEURES} heures travaillée : {predict}/10")
 
         # Étape 5 : Affichage du graphique avec la droite de régression :
         save_regression_graph(data, beta_0, beta_1)
