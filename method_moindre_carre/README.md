@@ -21,7 +21,7 @@ Prédit une note (`/10`) en fonction des heures d'étude.
 
 - Données : `predict_note.csv` (colonnes `Heures`, `Notes`)
 - Sorties : `relation_notes_heures.png`, `regression_lineaire.png`
-- Prédiction pour 2,5 h d'étude
+- Prédiction pour `HEURES` heures d'étude (constante modifiable en tête de `predict_note.py`, défaut : `25`)
 
 ```bash
 cd predict_note_ecole && python3 predict_note.py

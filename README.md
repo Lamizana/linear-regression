@@ -12,11 +12,10 @@
 
 > Dernière mise à jour : 15/09/2026
 
-Introduction au machine learning : mise en œuvre d'une **régression linéaire simple** selon
-**deux approches différentes**, organisées en deux parties indépendantes :
+Introduction au machine learning : mise en œuvre d'une **régression linéaire simple** selon **deux approches différentes**, organisées en deux parties indépendantes :
 
 | Approche | Dossier | Méthode | Données |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Moindres carrés** (OLS) | `method_moindre_carre/` | Formule analytique (solution fermée) | Notes d'école + prix de voiture |
 | **Descente de gradient** | `method_decente_gradient/` | Optimisation itérative (10 000 étapes) | Prix de voiture |
 
@@ -24,18 +23,18 @@ Introduction au machine learning : mise en œuvre d'une **régression linéaire 
 
 ## Structure
 
-```
+```console
 linear-regression/
 ├── requirements.txt
-├── method_moindre_carre/            ← Partie 1 : moindres carrés (OLS)
-│   ├── predict_note_ecole/          ← Prédiction de notes selon les heures d'étude
-│   └── predict_prix_voiture/        ← Prédiction du prix d'une voiture selon le kilométrage
-└── method_decente_gradient/         ← Partie 2 : descente de gradient
-    ├── entrainement.py              ← Entraîne le modèle → thetas.json
-    ├── predict_prix.py              ← Prédiction interactive du prix
-    ├── bonus.py                     ← Évaluation (MSE, MAE, R²) + visualisation
-    ├── logger.py                    ← Logging coloré partagé
-    └── utils.py                     ← Fonctions partagées (chargement CSV, lecture des thetas)
+├── method_moindre_carre/            # Partie 1 : moindres carrés (OLS)
+│   ├── predict_note_ecole/          # Prédiction de notes selon les heures d'étude
+│   └── predict_prix_voiture/        # Prédiction du prix d'une voiture selon le kilométrage
+└── method_decente_gradient/         # Partie 2 : descente de gradient
+    ├── entrainement.py              # Entraîne le modèle → thetas.json
+    ├── predict_prix.py              # Prédiction interactive du prix
+    ├── bonus.py                     # Évaluation (MSE, MAE, R²) + visualisation
+    ├── logger.py                    # Logging coloré partagé
+    └── utils.py                     # Fonctions partagées (chargement CSV, lecture des thetas)
 ```
 
 ---
@@ -48,16 +47,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+> [!NOTE]
 > Les images (`*.png`) et le fichier `thetas.json` sont générés à l'exécution et sont ignorés par git.
 
 ---
 
-## Partie 1 — Moindres carrés (`method_moindre_carre/`)
+## Partie 1: Moindres carrés (`method_moindre_carre/`)
 
 Régression linéaire par **solution analytique** (OLS) : calcul direct de la pente `beta_1`
 et de l'ordonnée à l'origine `beta_0`.
 
-- **Notes d'école** : prédit une note pour 2,5 h d'étude.
+- **Notes d'école** : prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est configurable via la constante `HEURES` en tête de `predict_note.py` (défaut : `25` h).
 
   ```bash
   cd method_moindre_carre/predict_note_ecole && python3 predict_note.py
@@ -73,7 +73,7 @@ Chaque script enregistre un nuage de points et le graphique avec la droite de r�
 
 ---
 
-## Partie 2 — Descente de gradient (`method_decente_gradient/`)
+## Partie 2: Descente de gradient (`method_decente_gradient/`)
 
 Régression linéaire par **descente de gradient** sur données normalisées
 (min-max vers `[0, 1]`), puis dénormalisation des paramètres `theta0` / `theta1`.
@@ -96,17 +96,16 @@ Régression linéaire par **descente de gradient** sur données normalisées
    cd method_decente_gradient && python3 bonus.py
    ```
 
-Le détail du sujet (énoncé, formules, consignes) se trouve dans
-[`method_decente_gradient/README.md`](method_decente_gradient/README.md).
+Le détail du sujet (énoncé, formules, consignes) se trouve dans [**README.md**](method_decente_gradient/README.md).
 
 ---
 
 ## Comparaison des deux méthodes
 
 | Aspect | Moindres carrés | Descente de gradient |
-|---|---|---|
-| Résolution | Analytique (formule fermée) | Itérative (10 000 étapes) |
-| Normalisation | Aucune | Min-max vers `[0, 1]` |
-| Persistance des paramètres | Aucune (calcul à la volée) | `thetas.json` |
-| Métriques | Aucune (visuel uniquement) | MSE, MAE, R² |
-| Type de code | Script autonome par cas d'usage | Modulaire (entraînement / prédiction / évaluation) |
+| --- | --- | --- |
+| ***Résolution*** | Analytique (formule fermée) | Itérative (10 000 étapes) |
+| ***Normalisation*** | Aucune | Min-max vers `[0, 1]` |
+| ***Persistance des paramètres*** | Aucune (calcul à la volée) | `thetas.json` |
+| ***Métriques*** | Aucune (visuel uniquement) | MSE, MAE, R² |
+| ***Type de code*** | Script autonome par cas d'usage | Modulaire (entraînement / prédiction / évaluation) |
