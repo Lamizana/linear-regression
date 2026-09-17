@@ -12,6 +12,12 @@
 
 > Dernière mise à jour : 15/09/2026
 
+---
+
+[ZehdBox - Linear Regression](https://lamizana.github.io/ZehdBox/projets/linear-regression/)
+
+---
+
 Introduction au machine learning : mise en œuvre d'une **régression linéaire simple** selon **deux approches différentes**, organisées en deux parties indépendantes :
 
 | Approche | Dossier | Méthode | Données |
