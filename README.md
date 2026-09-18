@@ -6,11 +6,11 @@
   <img src="https://img.shields.io/badge/Topic-Machine%20Learning-2088FF?style=for-the-badge&logoColor=white" alt="Machine Learning">
 </p>
 
-# Linear Regression
+<h1 align="center">Linear Regression</h1>
 
-> Created by Alex Lamizana on 31/05/2025
+<p align="center">Created by Alex Lamizana on 31/05/2025</p>
 
-> Dernière mise à jour : 15/09/2026
+<p align="center">Dernière mise à jour : 18/09/2026</p>
 
 ---
 
