@@ -11,6 +11,9 @@
   <h1>Linear Regression</h1>
 
   <p><strong>Régression linéaire simple </strong></p>
+  <a href="https://lamizana.github.io/ZehdBox/projets/linear-regression/">
+    <img src="https://img.shields.io/badge/Portfolio-ZehdBox-8A2BE2?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio ZehdBox">
+  </a>
   <p>Created  on 31/05/2025 · Dernière mise à jour : 16/10/2026</p>
 </div>
 
@@ -24,6 +27,7 @@
 - [Sommaire](#sommaire)
 - [À propos](#à-propos)
 - [Approches](#approches)
+- [Comment ça marche](#comment-ça-marche)
 - [Installation](#installation)
   - [Prérequis](#prérequis)
   - [Étapes](#étapes)
@@ -63,6 +67,40 @@ Le projet couvre la résolution **analytique** (solution fermée) et la résolut
 | --- | --- | --- | --- |
 | **Moindres carrés** (OLS) | `method_moindre_carre/` | Formule analytique (solution fermée) | Notes d'école + prix de voiture |
 | **Descente de gradient** | `method_descente_gradient/` | Optimisation itérative (10 000 étapes) | Prix de voiture |
+
+---
+
+## Comment ça marche
+
+Le modèle cherche à relier deux variables par une **droite** :
+
+```console
+prix = θ₀ + θ₁ × km
+```
+
+- `θ₀` : le prix d'une voiture à 0 km (ordonnée à l'origine).
+- `θ₁` : la perte de valeur par kilomètre (la pente).
+
+**La fonction de coût** mesure l'écart entre la droite et les données réelles, ici la **MSE** (*Mean Squared Error*), la moyenne des carrés des erreurs.
+
+> [!NOTE]
+> Entraîner le modèle, c'est **minimiser la MSE**.
+
+**La descente de gradient** approche ce minimum par itérations :
+
+1. **Normaliser** les données (min-max vers `[0, 1]`) pour stabiliser la convergence.
+2. **Itérer** (10 000 fois) : calculer les gradients de la MSE par rapport à `θ₀` et `θ₁`, puis mettre à jour les deux paramètres **simultanément** avec un petit pas (`learning rate = 0,01`).
+3. **Dénormaliser** `θ₀` et `θ₁` pour revenir à l'échelle réelle (€, km).
+
+Résultats obtenus sur les 24 voitures du sujet :
+
+- `θ₀ ≈ 8 480,97` (prix à 0 km) · `θ₁ ≈ −0,0213` (perte par km)
+- **MAE = 556,48 €**
+- **MSE = 445 729,27 €²**
+- **R² ≈ 0,733** (≈ 73 % de la variance expliquée)
+
+> [!TIP]
+> La méthode des **moindres carrés** (partie 1) obtient le même résultat de façon analytique, sans itération. Pour la version détaillée (théorie, code pas-à-pas, métriques), voir le [tutoriel Régression linéaire](https://lamizana.github.io/ZehdBox/cours/python/linear-regression/).
 
 ---
 
@@ -233,7 +271,6 @@ Les messages de commit suivent [Conventional Commits](https://www.conventionalco
 | **[NumPy](https://numpy.org/)** | *Calcul numérique et vectorisation* |
 | **[Pandas](https://pandas.pydata.org/)** | *Chargement et manipulation des données* |
 | **[Matplotlib](https://matplotlib.org/)** | *Visualisation des nuages de points et des droites de régression* |
-
 
 ---
 

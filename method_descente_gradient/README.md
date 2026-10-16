@@ -63,7 +63,7 @@ cd method_descente_gradient && python3 bonus.py
 ```
 > [!note]
 > Les modules `logger.py` (logging coloré) et `utils.py` (chargement CSV, lecture des thetas) sont partagés par les trois scripts:
-> - Is ne s'exécutent pas seuls.
+> - Ils ne s'exécutent pas seuls.
 
 ---
 
@@ -76,4 +76,5 @@ cd method_descente_gradient && python3 bonus.py
 ---
 
 > L'énoncé officiel du projet (formules, consignes, AI Instructions) est conservé dans
-> [`enonce.md`](enonce.md).
+> [`enonce.md`](enonce.md). Pour la version détaillée (théorie et code pas-à-pas), voir le
+> [tutoriel Régression linéaire](https://lamizana.github.io/ZehdBox/cours/python/linear-regression/).
