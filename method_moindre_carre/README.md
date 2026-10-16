@@ -1,6 +1,6 @@
 # Moindres carrés (OLS)
 
-> Partie 1 — régression linéaire simple par la **méthode des moindres carrés**
+> Partie 1 régression linéaire simple par la **méthode des moindres carrés**
 > (solution analytique, sans optimisation itérative).
 
 ## Principe

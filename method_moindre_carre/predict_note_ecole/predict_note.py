@@ -90,7 +90,7 @@ def save_graph(data: pd.DataFrame):
     plt.ylim(0, data["Notes"].max() + 1)
 
     # Sauvegarde le graphique :
-    plt.savefig("relation_notes_heures.png")
+    plt.savefig("courbe_data.png")
     return
 
 
