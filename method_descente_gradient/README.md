@@ -1,7 +1,8 @@
 # Descente de gradient
 
-> Partie 2 de la régression linéaire simple par **descente de gradient**
-> (optimisation itérative sur données normalisées).
+> Partie 2 de la régression linéaire simple par **descente de gradient** (optimisation itérative sur données normalisées).
+
+---
 
 ## Principe
 
@@ -9,10 +10,9 @@ On cherche la droite `estimatePrice(mileage) = theta_0 + theta_1 * mileage` qui 
 Contrairement aux moindres carrés, les paramètres sont ajustés **par itérations** :
 
 1. Les variables sont normalisées **min-max** vers `[0, 1]` pour stabiliser la convergence.
-2. À chaque itération, on calcule le gradient moyen de l'erreur pour `theta_0` et `theta_1`, puis on
-   met à jour les deux paramètres **simultanément** :
+2. À chaque itération, on calcule le gradient moyen de l'erreur pour `theta_0` et `theta_1`, puis on met à jour les deux paramètres **simultanément** :
 
-```
+```python
 gradient_theta_0 = (1 / m) · Σ (y_pred − y)
 gradient_theta_1 = (1 / m) · Σ (y_pred − y) · x_norm
 
@@ -20,8 +20,9 @@ theta_0 -= learningRate · gradient_theta_0
 theta_1 -= learningRate · gradient_theta_1
 ```
 
-3. Une fois l'entraînement terminé, `theta_0` et `theta_1` sont **dénormalisés** pour revenir à
-   l'échelle d'origine des données.
+3. Une fois l'entraînement terminé, `theta_0` et `theta_1` sont **dénormalisés** pour revenir à l'échelle d'origine des données.
+
+---
 
 ## Scripts
 
@@ -60,9 +61,11 @@ Trace le nuage de points et la droite de régression, puis calcule les métrique
 ```bash
 cd method_descente_gradient && python3 bonus.py
 ```
+> [!note]
+> Les modules `logger.py` (logging coloré) et `utils.py` (chargement CSV, lecture des thetas) sont partagés par les trois scripts:
+> - Is ne s'exécutent pas seuls.
 
-> Les modules `logger.py` (logging coloré) et `utils.py` (chargement CSV, lecture des thetas) sont
-> partagés par les trois scripts ; ils ne s'exécutent pas seuls.
+---
 
 ## Bibliothèques
 

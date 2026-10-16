@@ -1,25 +1,18 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/NumPy-1.26-010101?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
-  <img src="https://img.shields.io/badge/Pandas-2.2-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
-  <img src="https://img.shields.io/badge/Matplotlib-3.9-FFCA28?style=for-the-badge&logo=matplotlib&logoColor=white" alt="Matplotlib">
-  <img src="https://img.shields.io/badge/Topic-Machine%20Learning-2088FF?style=for-the-badge&logoColor=white" alt="Machine Learning">
-  <img src="https://img.shields.io/badge/Projet-42-000000?style=for-the-badge&logo=42&logoColor=white" alt="Projet 42">
-</p>
+<div align="center">
+  <p>
+    <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+    <img src="https://img.shields.io/badge/NumPy-1.26-010101?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+    <img src="https://img.shields.io/badge/Pandas-2.2-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+    <img src="https://img.shields.io/badge/Matplotlib-3.9-FFCA28?style=for-the-badge&logo=matplotlib&logoColor=white" alt="Matplotlib">
+    <img src="https://img.shields.io/badge/Topic-Machine%20Learning-2088FF?style=for-the-badge&logoColor=white" alt="Machine Learning">
+    <img src="https://img.shields.io/badge/Projet-42-000000?style=for-the-badge&logo=42&logoColor=white" alt="Projet 42">
+  </p>
 
-<h1 align="center">Linear Regression</h1>
+  <h1>Linear Regression</h1>
 
-<p align="center">
-  <strong>Régression linéaire simple — moindres carrés &amp; descente de gradient</strong>
-</p>
-
-<p align="center">
-  Projet 42 · Python 3.12 · NumPy, Pandas, Matplotlib
-</p>
-
-<p align="center">
-  Created by Alex Lamizana on 31/05/2025 · Dernière mise à jour : 16/10/2026
-</p>
+  <p><strong>Régression linéaire simple </strong></p>
+  <p>Created  on 31/05/2025 · Dernière mise à jour : 16/10/2026</p>
+</div>
 
 ---
 
@@ -28,17 +21,22 @@
 <details>
 <summary>Déplier le sommaire</summary>
 
+- [Sommaire](#sommaire)
 - [À propos](#à-propos)
 - [Approches](#approches)
 - [Installation](#installation)
+  - [Prérequis](#prérequis)
+  - [Étapes](#étapes)
 - [Utilisation](#utilisation)
   - [Partie 1 : Moindres carrés](#partie-1--moindres-carrés)
+    - [Notes d'école](#notes-décole)
+    - [Prix d'une voiture](#prix-dune-voiture)
   - [Partie 2 : Descente de gradient](#partie-2--descente-de-gradient)
 - [Comparaison des deux méthodes](#comparaison-des-deux-méthodes)
 - [Structure du projet](#structure-du-projet)
 - [Contribuer](#contribuer)
 - [Auteur](#auteur)
-- [Remerciements](#remerciements)
+- [Bibliothèques](#bibliothèques)
 
 </details>
 
@@ -46,11 +44,16 @@
 
 ## À propos
 
-Introduction au machine learning : mise en œuvre d'une **régression linéaire simple** selon **deux approches différentes**, organisées en deux parties indépendantes. Le projet couvre la résolution **analytique** (solution fermée) et la résolution **itérative** (descente de gradient), codées de zéro avec NumPy, Pandas et Matplotlib.
+Introduction au machine learning : mise en œuvre d'une **régression linéaire simple** selon **deux approches différentes**, organisées en deux parties indépendantes :
+
+- Méthode des moindres carrés.
+- Méthode descente de gradient.
+
+Le projet couvre la résolution **analytique** (solution fermée) et la résolution **itérative** (descente de gradient), codées de zéro avec NumPy, Pandas et Matplotlib.
 
 | Ressource | Lien |
 | --- | --- |
-| Fiche du projet (portfolio) | [lamizana.github.io/ZehdBox/projets/linear-regression](https://lamizana.github.io/ZehdBox/projets/linear-regression/) |
+| Fiche du projet (portfolio) | [ZehdBox](https://lamizana.github.io/ZehdBox/projets/linear-regression/) |
 
 ---
 
@@ -215,7 +218,7 @@ Les messages de commit suivent [Conventional Commits](https://www.conventionalco
 
 ## Auteur
 
-**Alex Lamizana** — étudiant à 42 Angoulême, spécialisation Data & IA
+**Alex Lamizana** | étudiant à 42 Angoulême, spécialisation Data & IA
 
 - [Site](https://lamizana.github.io/ZehdBox/)
 - [GitHub](https://github.com/Lamizana)
@@ -223,12 +226,14 @@ Les messages de commit suivent [Conventional Commits](https://www.conventionalco
 
 ---
 
-## Remerciements
+## Bibliothèques
 
-- [NumPy](https://numpy.org/) — calcul numérique et vectorisation
-- [Pandas](https://pandas.pydata.org/) — chargement et manipulation des données
-- [Matplotlib](https://matplotlib.org/) — visualisation des nuages de points et des droites de régression
-- Le sujet officiel **42 × BNB Chain** pour le cadre du projet
+| Libs | Fonctions |
+| --- | --- |
+| **[NumPy](https://numpy.org/)** | *Calcul numérique et vectorisation* |
+| **[Pandas](https://pandas.pydata.org/)** | *Chargement et manipulation des données* |
+| **[Matplotlib](https://matplotlib.org/)** | *Visualisation des nuages de points et des droites de régression* |
+
 
 ---
 
