@@ -82,7 +82,7 @@ Prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est
   ```
 
 <div align="center">
-<img src="./method_moindre_carre/images/regression_lineaire_notes.png">
+  <img src=".github/assets/regression_lineaire_notes.png">
 </div>
 
 ---
@@ -99,7 +99,7 @@ Prédit un prix selon le kilométrage. Le kilométrage est configurable via la c
 Chaque script enregistre un nuage de points et le graphique avec la droite de régression.
 
 <div align="center">
-<img src="./method_moindre_carre/images/regression_lineaire_voiture.png">
+  <img src=".github/assets/regression_lineaire_voiture.png">
 </div>
 
 ---
@@ -130,7 +130,7 @@ Régression linéaire par **descente de gradient** sur données normalisées   (
    ```
 
 <div align="center">
-<img src="./method_descente_gradient/images/regression_lineaire.png">
+  <img src=".github/assets/regression_lineaire.png">
 </div>
 
 > [!note]
