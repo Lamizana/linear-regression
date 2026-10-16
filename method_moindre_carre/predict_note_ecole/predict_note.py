@@ -26,7 +26,7 @@ Le fichier `predict_note.csv` doit contenir au moins deux colonnes :
 
 Sorties du programme :
 ----------------------
-- Un fichier image `relation_notes_heures.png` (nuage de points)
+- Un fichier image `courbe_data.png` (nuage de points)
 - Un fichier image `regression_lineaire.png` (avec droite de régression)
 - Une prédiction de note pour une valeur d’heure fixée dans `main`
 
@@ -52,7 +52,7 @@ def save_graph(data: pd.DataFrame):
     Génère et enregistre un graphique en nuage de points (scatter plot)
     illustrant la relation entre les heures d'étude et les notes obtenues.
 
-    Le graphique est sauvegardé sous le nom "relation_notes_heures.png".
+    Le graphique est sauvegardé sous le nom "courbe_data.png".
 
     Parameters
     ----------
@@ -75,7 +75,7 @@ def save_graph(data: pd.DataFrame):
     >>> import pandas as pd
     >>> df = pd.DataFrame({"Heures": [1, 2, 3], "Notes": [6, 6.5, 7.5]})
     >>> save_graph(df)
-    # Enregistre le fichier 'relation_notes_heures.png'
+    # Enregistre le fichier 'courbe_data.png'
     """
 
     # Trace un graphique simple (nuage de points) :

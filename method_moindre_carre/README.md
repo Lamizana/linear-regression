@@ -1,6 +1,6 @@
 # Moindres carrés (OLS)
 
-> Partie 1 régression linéaire simple par la **méthode des moindres carrés**
+> Partie 1 de la régression linéaire simple par la **méthode des moindres carrés**
 > (solution analytique, sans optimisation itérative).
 
 ## Principe
@@ -20,11 +20,11 @@ beta_0 = mean(Y) − beta_1 · mean(X)
 Prédit une note (`/10`) en fonction des heures d'étude.
 
 - Données : `predict_note.csv` (colonnes `Heures`, `Notes`)
-- Sorties : `relation_notes_heures.png`, `regression_lineaire.png`
-- Prédiction pour `HEURES` heures d'étude (constante modifiable en tête de `predict_note.py`, défaut : `25`)
+- Sorties : `courbe_data.png` (nuage de points), `regression_lineaire.png` (avec droite de régression)
+- Prédiction pour `HEURES` heures d'étude (constante modifiable en tête de `predict_note.py`, défaut : `2.5`)
 
 ```bash
-cd predict_note_ecole && python3 predict_note.py
+cd method_moindre_carre/predict_note_ecole && python3 predict_note.py
 ```
 
 ### Prédiction de prix de voiture (`predict_prix_voiture/`)
@@ -32,11 +32,11 @@ cd predict_note_ecole && python3 predict_note.py
 Prédit le prix d'une voiture (`€`) en fonction de son kilométrage.
 
 - Données : `predict_prix.csv` (colonnes `km`, `price`)
-- Sortie : `regression_lineaire_voiture.png`
-- Prédiction pour `KM` kilomètres (constante modifiable en tête de `predict_prix.py`, défaut : `500_000`)
+- Sortie : `regression_lineaire_voiture.png` (nuage de points + droite de régression)
+- Prédiction pour `KM` kilomètres (constante modifiable en tête de `predict_prix.py`, défaut : `89_000`)
 
 ```bash
-cd predict_prix_voiture && python3 predict_prix.py
+cd method_moindre_carre/predict_prix_voiture && python3 predict_prix.py
 ```
 
 ## Bibliothèques
