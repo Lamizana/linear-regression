@@ -81,6 +81,8 @@ Prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est
   > python3 predict_note.py
   ```
 
+![Texte alternatif](assets/regression_lineaire_notes.png)
+
 <div align="center">
   <img src=".github/assets/regression_lineaire_notes.png">
 </div>
@@ -97,6 +99,9 @@ Prédit un prix selon le kilométrage. Le kilométrage est configurable via la c
   ```
 
 Chaque script enregistre un nuage de points et le graphique avec la droite de régression.
+
+![Texte alternatif](assets/regression_lineaire_voiture.png)
+
 
 <div align="center">
   <img src=".github/assets/regression_lineaire_voiture.png">
@@ -129,9 +134,8 @@ Régression linéaire par **descente de gradient** sur données normalisées   (
    > python3 bonus.py
    ```
 
-<div align="center">
-  <img src=".github/assets/regression_lineaire.png">
-</div>
+![Texte alternatif](assets/regression_lineaire.png)
+
 
 > [!note]
 > Le détail du projet (énoncé, formules, consignes) se trouve dans [**README.md**](method_descente_gradient/README.md).
