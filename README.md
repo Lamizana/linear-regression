@@ -81,7 +81,7 @@ Prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est
   > python3 predict_note.py
   ```
 
-![Nuage de points des notes en fonction des heures d'étude, avec la droite de régression par moindres carrés](images/regression_lineaire_notes.png)div>
+![Nuage de points des notes en fonction des heures d'étude, avec la droite de régression par moindres carrés](images/regression_lineaire_notes.png)
 
 ---
 
