@@ -10,11 +10,11 @@
 
   <h1>Linear Regression</h1>
 
-  <p><strong>Régression linéaire simple </strong></p>
+  <p><strong>Régression linéaire simple </strong></p>  
+  <p>Created  on 31/05/2025 · Dernière mise à jour : 16/10/2026</p>
   <a href="https://lamizana.github.io/ZehdBox/projets/linear-regression/">
     <img src="https://img.shields.io/badge/Portfolio-ZehdBox-8A2BE2?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio ZehdBox">
   </a>
-  <p>Created  on 31/05/2025 · Dernière mise à jour : 16/10/2026</p>
 </div>
 
 ---
