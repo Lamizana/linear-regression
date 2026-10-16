@@ -55,9 +55,12 @@ Introduction au machine learning : mise en œuvre d'une **régression linéaire 
 
 Le projet couvre la résolution **analytique** (solution fermée) et la résolution **itérative** (descente de gradient), codées de zéro avec NumPy, Pandas et Matplotlib.
 
+Pour la version détaillée (théorie, code pas-à-pas, métriques) :
+
 | Ressource | Lien |
 | --- | --- |
-| Fiche du projet (portfolio) | [ZehdBox](https://lamizana.github.io/ZehdBox/projets/linear-regression/) |
+| *Fiche du projet (portfolio)* | [ZehdBox](https://lamizana.github.io/ZehdBox/projets/linear-regression/) |
+| *Tutoriel (portfolio)* | [Zehdbox Tutoriel](https://lamizana.github.io/ZehdBox/cours/python/linear-regression/) |
 
 ---
 
@@ -100,7 +103,7 @@ Résultats obtenus sur les 24 voitures du sujet :
 - **R² ≈ 0,733** (≈ 73 % de la variance expliquée)
 
 > [!TIP]
-> La méthode des **moindres carrés** (partie 1) obtient le même résultat de façon analytique, sans itération. Pour la version détaillée (théorie, code pas-à-pas, métriques), voir le [tutoriel Régression linéaire](https://lamizana.github.io/ZehdBox/cours/python/linear-regression/).
+> La méthode des **moindres carrés** (partie 1) obtient le même résultat de façon analytique, sans itération.
 
 ---
 
