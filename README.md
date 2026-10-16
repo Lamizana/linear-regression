@@ -81,11 +81,7 @@ Prédit une note (`/10`) en fonction des heures d'étude. Le nombre d'heures est
   > python3 predict_note.py
   ```
 
-![Texte alternatif](images/regression_lineaire_notes.png)
-
-<div align="center">
-  <img src=".github/assets/regression_lineaire_notes.png">
-</div>
+![Nuage de points des notes en fonction des heures d'étude, avec la droite de régression par moindres carrés](images/regression_lineaire_notes.png)div>
 
 ---
 
@@ -100,7 +96,7 @@ Prédit un prix selon le kilométrage. Le kilométrage est configurable via la c
 
 Chaque script enregistre un nuage de points et le graphique avec la droite de régression.
 
-![Régression lineaire](assets/regression_lineaire_voiture.png)
+![Nuage de points du prix d'une voiture en fonction du kilométrage, avec la droite de régression par moindres carrés](assets/regression_lineaire_voiture.png)
 
 ---
 
@@ -129,8 +125,7 @@ Régression linéaire par **descente de gradient** sur données normalisées   (
    > python3 bonus.py
    ```
 
-![Texte alternatif](assets/regression_lineaire.png)
-
+![Droite de régression du prix d'une voiture en fonction du kilométrage, obtenue par descente de gradient](assets/regression_lineaire.png)
 
 > [!note]
 > Le détail du projet (énoncé, formules, consignes) se trouve dans [**README.md**](method_descente_gradient/README.md).
@@ -146,3 +141,22 @@ Régression linéaire par **descente de gradient** sur données normalisées   (
 | ***Persistance des paramètres*** | Aucune (calcul à la volée) | `thetas.json` |
 | ***Métriques*** | Aucune (visuel uniquement) | MSE, MAE, R² |
 | ***Type de code*** | Script autonome par cas d'usage | Modulaire (entraînement / prédiction / évaluation) |
+
+
+---
+
+## Auteur
+
+**Alex Lamizana** - étudiant à 42 Angoulême, spécialisation Data & IA
+
+- [Site](https://lamizana.github.io/ZehdBox/)
+- [GitHub](https://github.com/Lamizana)
+- [Contact](https://lamizana.github.io/ZehdBox/contact/)
+
+---
+
+<div align="center">
+
+*Ce projet a été réalisé conformément à la norme et au sujet officiel de 42.*
+
+</div>

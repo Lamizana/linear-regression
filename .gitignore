@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 thetas.json
 *.png
+!assets/*.png
 venv/
 .venv/
 .idea/
